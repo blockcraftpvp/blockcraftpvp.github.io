@@ -10,11 +10,11 @@
       --text: #111;
       --glass: rgba(255, 255, 255, 0.35);
       --highlight: rgba(255, 255, 255, 0.7);
-      --accent: #4a90e2;
-      --active: rgba(74, 144, 226, 0.9);
+      --accent: #28a745;
+      --active: rgba(40, 167, 69, 0.9);
       --shadow: rgba(0, 0, 0, 0.15);
-      --glow: rgba(74, 144, 226, 0.4);
-      --toggle-bg: #4a90e2;
+      --glow: rgba(40, 167, 69, 0.4);
+      --toggle-bg: #28a745;
     }
 
     [data-theme="dark"] {
@@ -22,11 +22,11 @@
       --text: #eaeaea;
       --glass: rgba(25, 25, 25, 0.35);
       --highlight: rgba(255, 255, 255, 0.08);
-      --accent: #64b5f6;
-      --active: rgba(100, 181, 246, 0.9);
+      --accent: #28a745;
+      --active: rgba(40, 167, 69, 0.9);
       --shadow: rgba(0, 0, 0, 0.7);
-      --glow: rgba(100, 181, 246, 0.6);
-      --toggle-bg: #64b5f6;
+      --glow: rgba(40, 167, 69, 0.6);
+      --toggle-bg: #28a745;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -57,14 +57,14 @@
       width: 120px;
       height: 120px;
       object-fit: contain;
-      border-radius: 0; /* no rounding if you want it exact logo */
-      box-shadow: none; /* NO box/shadow */
-      backdrop-filter: none; /* NO frosted effect */
+      border-radius: 0;
+      box-shadow: none;
+      backdrop-filter: none;
       transition: transform 0.3s ease;
     }
 
     header img:hover {
-      transform: scale(1.05); /* Only scale on hover, nothing else */
+      transform: scale(1.05);
     }
 
     /* --- NAVIGATION --- */
