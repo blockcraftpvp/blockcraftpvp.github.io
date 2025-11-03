@@ -5,127 +5,192 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BlockCraft 2025</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
     :root {
-      --bg: #f4f6fa;
+      --bg-gradient: radial-gradient(at 50% 10%, #e6ecff, #f6f9ff 60%);
+      --glass-light: rgba(255, 255, 255, 0.45);
+      --glass-dark: rgba(255, 255, 255, 0.08);
+      --highlight: rgba(255, 255, 255, 0.5);
+      --accent: #3a82f7;
+      --active: #30d158;
       --text: #111;
-      --card: rgba(255, 255, 255, 0.7);
-      --accent: #4a90e2;
-      --active: #4caf50;
-      --hover: rgba(255, 255, 255, 0.6);
-      --shadow: rgba(0, 0, 0, 0.1);
-      --toggle-bg: #4caf50;
-    }
-    [data-theme="dark"] {
-      --bg: #0d1117;
-      --text: #eaeaea;
-      --card: rgba(20, 20, 20, 0.7);
-      --accent: #64b5f6;
-      --active: #66bb6a;
-      --hover: rgba(255, 255, 255, 0.1);
-      --shadow: rgba(0, 0, 0, 0.6);
-      --toggle-bg: #4caf50;
+      --shadow: rgba(0, 0, 0, 0.25);
+      --blur: 25px;
+      --glow: rgba(60, 130, 255, 0.4);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    [data-theme="dark"] {
+      --bg-gradient: radial-gradient(at 50% 0%, #0a0d14, #151b26 60%);
+      --glass-light: rgba(30, 30, 30, 0.55);
+      --glass-dark: rgba(255, 255, 255, 0.1);
+      --highlight: rgba(255, 255, 255, 0.15);
+      --accent: #5aa8ff;
+      --active: #32d74b;
+      --text: #eaeaea;
+      --shadow: rgba(0, 0, 0, 0.8);
+      --blur: 30px;
+      --glow: rgba(90, 168, 255, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
-      font-family: "Inter", Arial, sans-serif;
-      background: var(--bg);
+      font-family: "Inter", sans-serif;
+      background: var(--bg-gradient);
       color: var(--text);
-      transition: background 0.4s ease, color 0.4s ease;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      overflow-x: hidden;
+      transition: background 0.4s ease, color 0.4s ease;
     }
 
     header {
       width: 100%;
-      height: auto;
-      max-height: 450px;
-      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: var(--bg);
+      padding: 2rem 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent 80%);
+      backdrop-filter: blur(80px);
+      z-index: -1;
     }
 
     header img {
-      width: 100%;
-      height: auto;
-      max-height: 100%;
-      object-fit: contain;
+      width: 80%;
+      max-width: 900px;
+      border-radius: 20px;
+      backdrop-filter: blur(40px) saturate(140%);
+      box-shadow: 0 20px 40px var(--shadow), inset 0 0 80px var(--highlight);
     }
 
     nav {
       position: sticky;
       top: 0;
+      z-index: 100;
       display: flex;
       justify-content: center;
       gap: 1rem;
-      background: var(--card);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px var(--shadow);
+      background: linear-gradient(135deg, var(--glass-light), var(--glass-dark));
+      backdrop-filter: blur(var(--blur)) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 40px var(--shadow);
       padding: 0.8rem 1rem;
-      z-index: 10;
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1rem;
-      font-weight: 500;
-      padding: 0.5rem 1.2rem;
-      cursor: pointer;
-      border-radius: 999px;
+      border-radius: 0 0 20px 20px;
       transition: all 0.3s ease;
     }
 
-    nav button:hover { background: var(--hover); }
-    nav button.active { background: var(--active); color: white; box-shadow: 0 4px 12px var(--shadow); }
+    nav button {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 999px;
+      color: var(--text);
+      padding: 0.6rem 1.5rem;
+      font-weight: 500;
+      font-size: 1rem;
+      cursor: pointer;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+      transition: all 0.25s ease;
+    }
+
+    nav button:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    nav button.active {
+      background: var(--active);
+      color: white;
+      box-shadow: 0 0 25px var(--glow);
+      transform: scale(1.03);
+    }
 
     main {
       flex: 1;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      padding: 2rem;
+      padding: 3rem 2rem;
     }
 
     .content {
-      max-width: 900px;
+      max-width: 950px;
       width: 100%;
-      padding: 2rem;
-      background: var(--card);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      box-shadow: 0 8px 30px var(--shadow);
-      animation: fadeIn 0.4s ease;
+      background: linear-gradient(145deg, var(--glass-light), var(--glass-dark));
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      border-radius: 30px;
+      box-shadow: 0 25px 80px var(--shadow), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 2.5rem;
+      animation: fadeIn 0.5s ease forwards;
+      transition: all 0.3s ease;
     }
 
-    .content h2 { margin-bottom: 1rem; }
-    .content p { line-height: 1.6; }
+    .content h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
-    @keyframes fadeIn { from {opacity: 0; transform: translateY(10px);} to {opacity: 1; transform: translateY(0);} }
+    .content p {
+      line-height: 1.8;
+      font-size: 1.05rem;
+      opacity: 0.9;
+    }
 
-    footer { position: fixed; bottom: 15px; left: 20px; font-size: 0.9rem; opacity: 0.8; }
+    footer {
+      position: fixed;
+      bottom: 15px;
+      left: 20px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.15);
+    }
 
     .theme-toggle {
       position: fixed;
       top: 15px;
       right: 20px;
-      background: var(--toggle-bg);
+      background: var(--accent);
       border: none;
       color: white;
-      padding: 0.6rem 1.2rem;
+      padding: 0.7rem 1.3rem;
       border-radius: 999px;
       cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 4px 15px var(--shadow);
-      transition: transform 0.2s;
+      font-weight: 600;
       font-size: 1.1rem;
+      box-shadow: 0 10px 25px var(--glow);
+      transition: all 0.2s ease;
     }
-    .theme-toggle:hover { transform: scale(1.05); }
+
+    .theme-toggle:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px var(--glow);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body data-theme="light">
@@ -143,8 +208,9 @@
   <main>
     <div class="content" id="about">
       <h2>About</h2>
-      <p>BlockCraft delivers an unparalleled PvP experience for Minecraft versions 1.19.4–1.21! Step into intense Duels, master KitPvP, and explore a variety of combat modes designed to sharpen your skills. Customize your kits, select your preferred battlegrounds, and rise above the competition to become the ultimate PvP champion! </p>
+      <p>BlockCraft delivers an unparalleled PvP experience for Minecraft versions 1.19.4–1.21! Step into intense Duels, master KitPvP, and explore a variety of combat modes designed to sharpen your skills. Customize your kits, select your preferred battlegrounds, and rise above the competition to become the ultimate PvP champion!</p>
     </div>
+
     <div class="content" id="faq" style="display:none;">
       <h2>FAQ</h2>
       <p>Here you will find answers to the most common questions.</p>
@@ -152,7 +218,6 @@
   </main>
 
   <button class="theme-toggle" id="themeToggle">🌙</button>
-
   <footer>BlockCraft 2025</footer>
 
   <script>
@@ -164,7 +229,7 @@
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
         if (btn.dataset.tab === "store") {
-          window.location.href = "shop.blockcraftpvp.net";
+          window.location.href = "https://shop.blockcraftpvp.net";
           return;
         }
         buttons.forEach(b => b.classList.remove("active"));
