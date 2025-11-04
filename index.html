@@ -42,16 +42,16 @@
       overflow-x: hidden;
     }
 
-    /* --- HEADER (2560x1080 BANNER) --- */
+    /* --- HEADER (cropped middle of 2560x1080 banner) --- */
     header {
       width: 100%;
-      height: auto;
-      aspect-ratio: 2560 / 1080; /* keeps 21:9 ratio */
+      height: 350px; /* cropped height (adjust if needed) */
       background: url("https://raw.githubusercontent.com/blockcraftpvp/blockcraftpvp.github.io/refs/heads/main/Untitled%20design(1).png") center center / cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
+      overflow: hidden;
     }
 
     header::after {
