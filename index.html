@@ -42,29 +42,32 @@
       overflow-x: hidden;
     }
 
-    /* --- HEADER --- */
+    /* --- HEADER (2560x1080 BANNER) --- */
     header {
       width: 100%;
+      height: auto;
+      aspect-ratio: 2560 / 1080; /* keeps 21:9 ratio */
+      background: url("banner.png") center center / cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 2.5rem 0;
-      background: transparent;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(2px);
+    }
+
+    header h1 {
+      position: relative;
+      color: white;
+      font-size: 3rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.7);
       z-index: 2;
-    }
-
-    header img {
-      width: 120px;
-      height: 120px;
-      object-fit: contain;
-      border-radius: 0;
-      box-shadow: none;
-      backdrop-filter: none;
-      transition: transform 0.3s ease;
-    }
-
-    header img:hover {
-      transform: scale(1.05);
     }
 
     /* --- NAVIGATION --- */
@@ -172,7 +175,7 @@
 <body data-theme="light">
 
   <header>
-    <img src="Untitled Design(1).png" alt="BlockCraft Logo" />
+    <h1>BlockCraft 2025</h1>
   </header>
 
   <nav>
