@@ -29,7 +29,11 @@
       --toggle-bg: #28a745;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: "Inter", Arial, sans-serif;
@@ -42,32 +46,16 @@
       overflow-x: hidden;
     }
 
-    /* --- HEADER (cropped middle of 2560x1080 banner) --- */
+    /* --- HEADER (2560x1080 banner) --- */
     header {
       width: 100%;
-      height: 350px; /* cropped height (adjust if needed) */
-      background: url("https://raw.githubusercontent.com/blockcraftpvp/blockcraftpvp.github.io/refs/heads/main/Untitled%20design(1).png") center center / cover no-repeat;
+      height: 450px; /* adjust for more/less crop */
+      background: url("banner.png") center center / cover no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
       overflow: hidden;
-    }
-
-    header::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(2px);
-    }
-
-    header h1 {
-      position: relative;
-      color: white;
-      font-size: 3rem;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.7);
-      z-index: 2;
     }
 
     /* --- NAVIGATION --- */
@@ -105,7 +93,10 @@
       box-shadow: inset 0 1px 1px var(--highlight);
     }
 
-    nav button:hover { background: rgba(255, 255, 255, 0.45); }
+    nav button:hover {
+      background: rgba(255, 255, 255, 0.45);
+    }
+
     nav button.active {
       background: var(--active);
       color: white;
@@ -135,12 +126,23 @@
       animation: fadeIn 0.4s ease;
     }
 
-    .content h2 { margin-bottom: 1rem; }
-    .content p { line-height: 1.6; }
+    .content h2 {
+      margin-bottom: 1rem;
+    }
+
+    .content p {
+      line-height: 1.6;
+    }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* --- FOOTER & THEME TOGGLE --- */
@@ -169,14 +171,14 @@
       font-size: 1.2rem;
     }
 
-    .theme-toggle:hover { transform: scale(1.1); }
+    .theme-toggle:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body data-theme="light">
 
-  <header>
-    <h1>BlockCraft 2025</h1>
-  </header>
+  <header></header>
 
   <nav>
     <button class="tab-button active" data-tab="about">About</button>
