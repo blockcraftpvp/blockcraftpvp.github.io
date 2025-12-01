@@ -2,22 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Copy & Close</title>
+<title>Copy to Clipboard</title>
 <script>
-function copyAndClose() {
-    const textToCopy = "play.blockcraftpvp.net";
-    navigator.clipboard.writeText(textToCopy)
-        .then(() => {
-            alert("Copied to clipboard!");
-            window.close(); // Will only close if opened via window.open
-        })
-        .catch(err => {
-            alert("Could not copy: " + err);
-        });
+function copyToClipboard() {
+    navigator.clipboard.writeText("play.blockcraftpvp.net")
+        .then(() => alert("Copied to clipboard!"))
+        .catch(err => alert("Failed to copy: " + err));
 }
 </script>
 </head>
 <body>
-<button onclick="copyAndClose()" style="font-size:20px;padding:10px;">Copy & Close</button>
+<button onclick="copyToClipboard()">Copy to Clipboard</button>
 </body>
 </html>
