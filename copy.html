@@ -2,16 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Copy to Clipboard</title>
-<script>
-function copyToClipboard() {
-    navigator.clipboard.writeText("play.blockcraftpvp.net")
-        .then(() => alert("Copied to clipboard!"))
-        .catch(err => alert("Failed to copy: " + err));
-}
-</script>
+<title>Copy Link</title>
 </head>
 <body>
-<button onclick="copyToClipboard()">Copy to Clipboard</button>
+<button onclick="navigator.clipboard.writeText('play.blockcraftpvp.net').then(()=>alert('Copied!'))">
+    Copy to Clipboard
+</button>
 </body>
 </html>
